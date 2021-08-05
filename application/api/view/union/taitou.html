@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="https://www.17sucai.com/static/css/demo.css" rel="stylesheet" media="all" />
+    <script src="/static/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="/static/admin/plugins/jQuery/clipboard.js"></script>
+    <script src="https://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>发票抬头信息</title>
+</head>
+<style type="text/css">
+body{margin:0px;padding:0px;}
+#byq{
+	width: 100%;
+    margin: 0 auto;
+}
+.mooer img{
+	width: 100%;
+}
+</style>
+<body id="byq">
+
+<div id="swit">
+    <div style="width: 80%;margin: 40px auto;">
+        <div style="margin-top: 20px;">抬头名称：<span style="color: #00a65a;"><?php echo $res['buyname'];?></span> <span id="btn" data-clipboard-text="<?php echo $res['buyname'];?>">复制</span></div>
+        <div id="show" style="display: none;color: #9e0505;margin-top: 5px;">已复制</div>
+        <div style="margin-top: 20px;">发票税号：<span style="color: #00a65a;"><?php echo $res['buyduty'];?></span> <span id="btns" data-clipboard-text="<?php echo $res['buyduty'];?>">复制</span></div>
+        <div id="shows" style="display: none;color: #9e0505;margin-top: 5px;">已复制</div>
+        <div style="margin-top: 20px;">单位地址：<span style="color: #00a65a;"><?php echo $res['buyplace'];?></span> <span id="btnsd" data-clipboard-text="<?php echo $res['buyplace'];?>">复制</span></div>
+        <div id="showsd" style="display: none;color: #9e0505;margin-top: 5px;">已复制</div>
+        <div style="margin-top: 20px;">电话号码：<span style="color: #00a65a;"><?php echo $res['buyphone'];?></span> <span id="btnsp" data-clipboard-text="<?php echo $res['buyphone'];?>">复制</span></div>
+        <div id="showsp" style="display: none;color: #9e0505;margin-top: 5px;">已复制</div>
+        <div style="margin-top: 20px;">开户银行：<span style="color: #00a65a;"><?php echo $res['buybank'];?></span> <span id="btnsk" data-clipboard-text="<?php echo $res['buybank'];?>">复制</span></div>
+        <div id="showsk" style="display: none;color: #9e0505;margin-top: 5px;">已复制</div>
+        <div style="margin-top: 20px;">银行账户：<span style="color: #00a65a;"><?php echo $res['buybankcode'];?></span> <span id="btnsz" data-clipboard-text="<?php echo $res['buybankcode'];?>">复制</span></div>
+        <div id="showsz" style="display: none;color: #9e0505;margin-top: 5px;">已复制</div>
+    </div>
+
+</div>
+<script>
+    var btn=document.getElementById('btn');
+    var clipboard=new Clipboard(btn);
+    clipboard.on('success', function(e){
+        $('#show').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+    clipboard.on('error', function(e){
+        $('#show').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+</script>
+<script>
+    var btn=document.getElementById('btns');
+    var clipboard=new Clipboard(btn);
+    clipboard.on('success', function(e){
+        $('#shows').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+    clipboard.on('error', function(e){
+        $('#shows').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+</script>
+<script>
+    var btn=document.getElementById('btnsd');
+    var clipboard=new Clipboard(btn);
+    clipboard.on('success', function(e){
+        $('#showsd').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+    clipboard.on('error', function(e){
+        $('#showsd').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+</script>
+<script>
+    var btn=document.getElementById('btnsk');
+    var clipboard=new Clipboard(btn);
+    clipboard.on('success', function(e){
+        $('#showsk').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+    clipboard.on('error', function(e){
+        $('#showsk').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+</script>
+<script>
+    var btn=document.getElementById('btnsz');
+    var clipboard=new Clipboard(btn);
+    clipboard.on('success', function(e){
+        $('#showsz').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+    clipboard.on('error', function(e){
+        $('#showsz').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+</script>
+<script>
+    var btn=document.getElementById('btnsp');
+    var clipboard=new Clipboard(btn);
+    clipboard.on('success', function(e){
+        $('#showsp').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+    clipboard.on('error', function(e){
+        $('#showsp').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+</script>
+</body>
+</html>

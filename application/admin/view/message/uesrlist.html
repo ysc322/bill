@@ -1,0 +1,91 @@
+
+
+<div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">留言管理</h3>
+            </div>
+            
+			<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+			  <div id="example1_filter" class="dataTables_filter">
+			  <!--form action="">
+			  <div class="box-body">
+		        <div class="form-group">
+		          <label for="module_name">用户名称</label>
+		          <input type="text" class="form-control" id="name" name="uname" placeholder="用户名称" value="">
+		        </div>
+						
+		        <div class="form-group search">  
+			      <div class="box-footer searchbox">
+			        <a class="btn btn-primary" href="/manager/building_index">重置</a>
+					<button type="submit" class="btn btn-primary">搜索</button>
+			      </div>
+		        </div>
+		       </div>
+				</form-->
+					<!--a href="/dcwusers/usersave" class="btn btn-app">
+					<i class="fa fa-plus"></i>
+					添加
+				</a-->
+				</div>
+			</div>
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>id</th>
+                  <th>用户ID</th>
+                  <th>手机号</th>
+                  <th>内容</th>
+                  <th>创建时间</th>
+                  <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($data['list'] as $k=>$vo){ ?>
+                <tr>
+                  <td><?php echo $vo['id'] ?></td>
+                  <td><?php echo $vo['uid'] ?></td>
+                  <td><?php echo $vo['phone'] ?></td>
+                  <td>
+                    <?php echo $vo['content'] ?>
+                    <div style="display: none" id="<?php echo $vo['id'] ?>" class="fff">
+                      <form class="form-horizontal" method="post" action="/message/mes?uid=<?php echo $vo['uid'] ?>">
+                        <input name="uid" hidden value="<?php echo $vo['uid'] ?>">
+                        <textarea class="form-control" rows="3" name="content" cols="30" placeholder="回复:"></textarea>
+                        <button type="submit" class="btn btn-info pull-right" id="btnSubmit">提交</button>
+                      </form>
+                    </div>
+                  </td>
+                  <td><?php echo date('Y-m-d H:i:s',$vo['addtime']); ?></td>
+                  <td>
+                    <a class="btn btn-primary" href="/message/mesdel?id=<?php echo $vo['id'] ?>&uid=<?php echo $vo['uid'] ?>">删除</a>
+                    <?php if($vo['type']==0){ ?>
+                    <a class="btn btn-primary fuifu"  fid="<?php echo $vo['id'] ?>" gid="<?php echo $vo['uid'] ?>" style="margin: 5px 0px;">回复</a>
+                    <?php if($vo['state']==0){ ?> <span style="color: red; margin-left: 5px;">1</span><?php } ?>
+                    <?php } ?>
+                  </td>
+
+                </tr>
+                <?php } ?>
+                
+                </tbody>
+              </table>
+			  <?php echo $page;?>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+        </div>
+  <script type="text/javascript">
+    $(".fuifu").click(function(){
+      var id=$(this).attr("fid");
+      var gid=$(this).attr("gid");
+      var con=document.getElementById(id);
+      con.style.cssText = 'display:  block;';
+      $.ajax({url:"/message/mes?uid="+gid,async:false});
+    });
+  </script>

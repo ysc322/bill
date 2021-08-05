@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="https://www.17sucai.com/static/css/demo.css" rel="stylesheet" media="all" />
+    <script src="/static/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="/static/admin/plugins/jQuery/clipboard.js"></script>
+    <script src="https://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<style type="text/css">
+body{margin:0px;padding:0px;}
+#byq{
+	width: 100%;
+    margin: 0 auto;
+}
+.mooer img{
+	width: 100%;
+}
+</style>
+<body id="byq">
+
+<div id="swit">
+    <div style="margin: 100px auto 20px; text-align: center;">
+        <p style="margin-bottom: 20px;">您的邀请码为：</p>
+        <div><strong>* <?php echo $data;?> *</strong> <span id="btn" data-clipboard-text="<?php echo $data;?>">复制</span></div>
+        <div id="show" style="display: none;color: #9e0505;margin-top: 5px;">已复制</div>
+    </div>
+    <img src="http://bill.ganbuguo.com/uploads/file/20191119/88.png" style="width: 150px;height: 150px;margin: 0 auto;display: block;"/>
+    <p style="margin: 10px auto; text-align: center;">长按识别二维码下载APP</p>
+</div>
+<script>
+    var btn=document.getElementById('btn');
+    var clipboard=new Clipboard(btn);
+    clipboard.on('success', function(e){
+        $('#show').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+    clipboard.on('error', function(e){
+        $('#show').slideDown().delay(1500).slideUp(300);
+        console.log(e);
+    });
+</script>
+</body>
+</html>

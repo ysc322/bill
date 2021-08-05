@@ -1,0 +1,98 @@
+
+
+<div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">banner列表</h3>
+            </div>
+            
+			<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+			  <div id="example1_filter" class="dataTables_filter">
+			  <form action="">
+			  <div class="box-body">
+		        <div class="form-group">
+		          <label for="module_name">状态</label>
+			   	  <select name="keyword" id="keyword" class="form-control">
+				  	<option value="">全部</option>
+				  	<option value="0">使用中</option>
+				  	<option value="1">下架</option>
+				  </select>
+		        </div>			
+		        <div class="form-group search">  
+			      <div class="box-footer searchbox">
+			        <!--a class="btn btn-primary" href="/manager/building_index">重置</a-->
+					<button type="submit" class="btn btn-primary">搜索</button>
+					<a href="/banner/addsave" class="btn btn-primary">添加</a>
+			      </div>
+				  
+		        </div>
+		       </div>
+				</form>
+				</div>
+			</div>
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>id</th>
+                  <th>标题</th>
+                  <th>图片</th>
+                  <th>图片链接</th>
+                  <th>上传时间</th>
+                  <th>是否有效</th>
+                  <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($data['list'] as $k=>$vo){ ?>
+                <tr>
+                  <td><?php echo $vo['id'] ?></td>
+                  <td><?php echo rawurldecode($vo['title']) ?></td>
+                  <td><img src="<?php echo $vo['photo'] ?>" style="width: 150px;height: 88px;"/></td>
+                  <td><a href="<?php echo $vo['photourl'] ?>"><?php if(!empty($vo['photourl'])) echo "验证链接🔗" ?></a></td>
+                  <td><?php echo $vo['ctime'] ?></td>
+                  <td>
+					<select  name="state" sid="<?php echo $vo['id'] ?>">
+						<option value ="0" <?php if($vo['state']==0) echo 'selected' ?>>使用中</option>
+						<option value ="1" <?php if($vo['state']==1) echo 'selected' ?>>已下架</option>
+					</select>
+				  </td>
+                  <td>
+				  <a href="/banner/addsave?id=<?php echo $vo['id'] ?>" class="btn btn-primary">编辑</a>
+                  <!--a href="/banner/delsoup?id=<?php echo $vo['id'] ?>" class="btn btn-primary">删除</a-->
+				  </td>
+                </tr>
+                <?php } ?>
+                
+                </tbody>
+              </table>
+			  <?php echo $page;?>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+        </div>
+	<script type="text/javascript">
+	// 保存更改操作
+	$('select[name="state"]').change(function(){
+        var state=$(this).val();
+        var id=$(this).attr("sid");
+        var ajaxurl = "/banner/index";
+         $.ajax({
+                url: ajaxurl,
+                type: "POST",
+                data:{"state": state,"id":id},
+                success: function (result) {
+                    alert("修改成功");
+                },
+                error: function () {
+                    alert("修改失败");
+                }
+            });
+        
+        return false;
+    });
+	</script>

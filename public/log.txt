@@ -1,0 +1,19 @@
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:
+返回值:{"code":"0000","message":"成功","order_no":"","out_order_no":"20190918384748595"}
+返回值:{"code":"42209","message":"签名验证失败"}
+返回值:{"code":"0000","message":"成功","order_no":"","out_order_no":"20190918384748825"}
+返回值:{"code":"0000","message":"查询成功","pay_status":"PENDING","pay_result":"","order_no":"9adbb6ab58774f078266a43617b11271","out_order_no":"20190918384748895","amount":"1223.56"}
+返回值:{"code":"42207","message":"数据解析失败: IdentityCardNumber为必填字段"}
+返回值:{"code":"0000","message":"查询成功","pay_status":"PENDING","pay_result":"","order_no":"9adbb6ab58774f078266a43617b11271","out_order_no":"20190918384748895","amount":"1223.56"}

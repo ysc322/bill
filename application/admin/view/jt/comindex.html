@@ -1,0 +1,103 @@
+
+
+<div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">回复列表</h3>
+            </div>
+            
+			<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+			  <div id="example1_filter" class="dataTables_filter">
+			  <form action="">
+			  <div class="box-body">
+		        <div class="form-group">
+		          <label for="module_name">回复状态</label>
+			   	  <select name="keyword" id="keyword" class="form-control">
+				  	<option value="0">请选择</option>
+				  	<option value="0">有用</option>
+				  	<option value="1">无效</option>
+				  </select>
+		        </div>
+					<input type="hidden" name="jtid" value="<?php echo $r ?>">
+		        <div class="form-group search">  
+			      <div class="box-footer searchbox">
+			        <!--a class="btn btn-primary" href="/manager/building_index">重置</a-->
+					<button type="submit" class="btn btn-primary">搜索</button>
+					<a href="/jt/addpl?jtid=<?php echo $r ?>" class="btn btn-primary">添加</a>
+			      </div>
+				  
+		        </div>
+		       </div>
+				</form>
+				</div>
+			</div>
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>id</th>
+                  <th>评论人</th>
+                  <th>鸡汤</th>
+                  <th>被评论次数</th>
+                  <th>点赞次数</th>
+				  <th>内容</th>
+                  <th>上传时间</th>
+                  <th>是否有效</th>
+                  <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($data['list'] as $k=>$vo){ ?>
+                <tr>
+                  <td><?php echo $vo['id'] ?></td>
+                  <td><?php echo $vo['uid'] ?></td>
+                  <td><?php echo $vo['jtid'] ?></td>
+                  <td><a href="/jt/huifu?comid=<?php echo $vo['id'] ?>&jtid=<?php echo $vo['jtid'] ?>"><?php echo $vo['yunumber'] ?><a></td>
+                  <td><?php echo $vo['comnumber'] ?></td>
+				  <td><?php echo rawurldecode($vo['comment']) ?></td>
+                  <td><?php echo date('Y-m-d H:i:s',$vo['ctime']) ?></td>
+                  <td>
+					<select  name="state" sid="<?php echo $vo['id'] ?>">
+						<option value ="0" <?php if($vo['state']==0) echo 'selected' ?>>有效</option>
+						<option value ="1" <?php if($vo['state']==1) echo 'selected' ?>>无效</option>
+					</select>
+				  </td>
+                  <td>
+				  <a href="/jt/addpl?id=<?php echo $vo['id'] ?>" class="btn btn-primary">编辑</a>
+				  <a href="/jt/addhfpl?comid=<?php echo $vo['id'] ?>&jtid=<?php echo $vo['jtid'] ?>" class="btn btn-primary">回复</a>
+				  </td>
+                </tr>
+                <?php } ?>
+                
+                </tbody>
+              </table>
+			  <?php echo $page;?>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+        </div>
+	<script type="text/javascript">
+	// 保存更改操作
+	$('select[name="state"]').change(function(){
+        var state=$(this).val();
+        var id=$(this).attr("sid");
+        var ajaxurl = "/jt/plindex";
+         $.ajax({
+                url: ajaxurl,
+                type: "POST",
+                data:{"state": state,"id":id},
+                success: function (result) {
+                    alert("修改成功");
+                },
+                error: function () {
+                    alert("修改失败");
+                }
+            });
+        
+        return false;
+    });
+	</script>
